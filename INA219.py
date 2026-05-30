@@ -1,4 +1,4 @@
-import smbus
+import smbus2 as smbus
 import time
 
 # Config Register (R/W)
@@ -57,7 +57,7 @@ class Mode:
 
 
 class INA219:
-    def __init__(self, i2c_bus=1, addr=0x40):
+    def __init__(self, i2c_bus=1, addr=0x27):
         self.bus = smbus.SMBus(i2c_bus);
         self.addr = addr
 
@@ -191,7 +191,7 @@ class INA219:
 if __name__=='__main__':
 
     # Create an INA219 instance.
-    ina219 = INA219(addr=0x43)
+    ina219 = INA219(addr=0x27)
     while True:
         bus_voltage = ina219.getBusVoltage_V()             # voltage on V- (load side)
         shunt_voltage = ina219.getShuntVoltage_mV() / 1000 # voltage between V+ and V- across the shunt
